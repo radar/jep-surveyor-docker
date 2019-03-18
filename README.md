@@ -24,5 +24,5 @@ Things you may want to cover:
 * ...
 
 `foreman start web`
-`foreman start webpack`
 `foreman start css-types`
+`foreman start webpack`
