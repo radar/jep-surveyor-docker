@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+`foreman start web`
+`foreman start webpack`
+`foreman start css-types`
