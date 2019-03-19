@@ -13,7 +13,6 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     axios.delete(this.props.url)
   }
   render() {
-    console.log(this.props)
     return (
       <div className={styles.ratingQuestion}>
         <a href={this.props.url}>{this.props.title}</a> |
