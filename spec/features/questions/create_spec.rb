@@ -3,13 +3,14 @@ require "rails_helper"
 RSpec.describe "Creating questions" do
   it "creates a new question" do
     visit "/"
+    click_link "New Question"
     fill_in "Title", with: "Is Capybara Cool?"
-    click_button "Add"
+    click_button "Create Rating question"
 
-    within("[data-automation-id=questions]") do
-      expect(page).to have_content("Is Capybara Cool?")
+    within(".flash-notice") do
+      expect(page).to have_content("Your question has been created.")
     end
-  end
 
-  it "cannot create a new question without a title"
+    expect(page).to have_content("Is Capybara Cool?")
+  end
 end
