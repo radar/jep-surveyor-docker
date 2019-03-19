@@ -6,7 +6,8 @@ import RatingQuestion from './RatingQuestion'
 
 interface Question {
   id: string,
-  title: string
+  title: string,
+  url: string
 }
 
 interface RatingQuestionsProps {
