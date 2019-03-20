@@ -5,7 +5,7 @@ module RatingQuestionsHelper
         {
           id: rating_question.id.to_s,
           title: rating_question.title,
-          url: rating_question_url(rating_question)
+          url: rating_question_path(rating_question)
         }
       end
     }
