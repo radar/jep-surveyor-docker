@@ -4,7 +4,9 @@ import { Redirect } from 'react-router-dom';
 
 interface RatingQuestionProps {
   id: string,
-  title: string
+  title: string,
+  url: string,
+  post_url: string
 }
 
 interface QuestionFormState {
@@ -23,7 +25,7 @@ class RatingQuestionForm extends React.Component<RatingQuestionProps, QuestionFo
     }
 
     submitNewQuestion = () => {
-      axios.post("/rating_questions.json", { rating_question: { title: this.state.value }})
+      axios.post(`${this.props.post_url}.json`, { rating_question: { title: this.state.value }})
         .then((response) => {
           this.setState({
             value: '',
@@ -33,7 +35,7 @@ class RatingQuestionForm extends React.Component<RatingQuestionProps, QuestionFo
     }
 
     updateQuestion = () => {
-      axios.put(`/rating_questions/${this.props.id}.json`, { rating_question: { title: this.state.value }})
+      axios.put(`${this.props.url}.json`, { rating_question: { title: this.state.value }})
         .then((response) => {
           this.setState({
             value: '',
@@ -48,7 +50,6 @@ class RatingQuestionForm extends React.Component<RatingQuestionProps, QuestionFo
     }
 
     renderForm = () => {
-      console.log(this.props)
         return(
             <div>
                 <h1>{this.state.flash ? this.state.flash : ""}
