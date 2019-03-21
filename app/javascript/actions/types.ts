@@ -11,7 +11,7 @@ interface Question {
 }
 
 interface Data {
-  data: any
+  data: Question
 }
 
 interface FetchQuestionsAction {
@@ -21,22 +21,22 @@ interface FetchQuestionsAction {
 
 interface SaveQuestionAction {
   type: typeof SAVE_QUESTION
-  payload: Question
+  payload: Data
 }
 
 interface FetchQuestionAction {
   type: typeof FETCH_QUESTION
-  payload: Question
+  payload: string
 }
 
 interface EditQuestionAction {
   type: typeof EDIT_QUESTION
-  payload: Question
+  payload: Data
 }
 
 interface DeleteQuestionAction {
   type: typeof DELETE_QUESTION
-  payload: Question
+  payload: string
 }
 
 export type QuestionActionTypes = FetchQuestionsAction | SaveQuestionAction | FetchQuestionAction | EditQuestionAction | DeleteQuestionAction

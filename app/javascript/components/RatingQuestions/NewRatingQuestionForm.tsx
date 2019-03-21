@@ -2,8 +2,11 @@ import * as React from 'react';
 import axios from 'axios';
 import * as styles from './RatingQuestionForm.module.scss'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { saveQuestion } from '../../actions';
 
 interface NewRatingQuestionFormProps extends RouteComponentProps<any>, React.Props<any> {
+  saveQuestion: (values: string) => void,
   id: string,
   title: string,
   url: string,
@@ -24,13 +27,8 @@ class NewRatingQuestionForm extends React.Component<NewRatingQuestionFormProps, 
     }
 
     submitNewQuestion = () => {
-      axios.post("/rating_questions.json", { rating_question: { title: this.state.value }})
-        .then((response) => {
-          this.setState({
-            value: ''
-          })
-          this.props.history.push('/')
-        })
+        this.props.saveQuestion(this.state.value);
+        this.props.history.push('/');
     }
 
     handleSubmit = (e: React.FormEvent) => {
@@ -63,4 +61,5 @@ class NewRatingQuestionForm extends React.Component<NewRatingQuestionFormProps, 
     }
 }
 
-export default withRouter(NewRatingQuestionForm);
+export default connect(null, { saveQuestion })(withRouter(NewRatingQuestionForm))
+  

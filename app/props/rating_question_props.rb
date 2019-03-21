@@ -10,7 +10,7 @@ class RatingQuestionProps
     {
       id: @rating_question.id.to_s,
       title: @rating_question.title,
-      url: "#{rating_questions_url}/#{@rating_question.id.to_s}"
+      url: "#{rating_questions_url}/#{@rating_question.id}",
     }
   end
 end

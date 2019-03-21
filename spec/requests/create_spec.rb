@@ -24,13 +24,13 @@ RSpec.describe "POST /rating_questions" do
 
   context 'when the request has no body' do
     it 'raises an exception' do
-      expect{ post '/rating_questions.json' }.to raise_error ActionController::ParameterMissing
+      expect { post '/rating_questions.json' }.to raise_error ActionController::ParameterMissing
     end
   end
 
   context "when the request has a blank title" do
     before do
-      post "/rating_questions.json", params: { rating_question: { title: ""} }
+      post "/rating_questions.json", params: { rating_question: { title: "" } }
     end
 
     it "returns a 422 Invalid Resource" do
@@ -39,7 +39,7 @@ RSpec.describe "POST /rating_questions" do
 
     it "shows errors that the title cannot be blank" do
       error = JSON.parse(response.body)
-      expect(error).to eq({"errors" => {"title" => ["can't be blank"]}})
+      expect(error).to eq("errors" => { "title" => ["can't be blank"] })
     end
   end
 end

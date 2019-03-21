@@ -11,12 +11,10 @@ require "rails"
   rails/test_unit/railtie
   sprockets/railtie
 ).each do |railtie|
-  begin
-    require railtie
-  rescue LoadError
-  end
-end
 
+  require railtie
+rescue LoadError
+end
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

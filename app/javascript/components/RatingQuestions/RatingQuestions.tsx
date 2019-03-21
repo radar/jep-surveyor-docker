@@ -20,22 +20,31 @@ interface RatingQuestionsProps extends RouteComponentProps<any>, React.Props<any
 
 class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
   componentDidMount = () => {
-    this.props.fetchQuestions();
+    if(this.props.questions.length === 0){
+      this.props.fetchQuestions();
+    }
+  }
+
+  renderRatingQuestions = () => {
+    if(this.props.questions.length > 0){
+      return this.props.questions.map(question => {
+        return <RatingQuestion key={question.id} {...question} />
+      })
+    }
   }
   render(): JSX.Element {
-    console.log(this.props.questions)
     return(
       <div data-automation-id='questions-list'>
         <div className={styles.heading}>
           <Link to="/rating_questions/new"><h1>Create New Question</h1></Link>
         </div>
-        {this.props.questions.map((question) => <RatingQuestion key={question.id} {...question} />)}
+        {this.renderRatingQuestions()}
       </div>
     )
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state): any {
   return {questions: state.questions}
 }
 

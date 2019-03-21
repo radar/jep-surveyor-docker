@@ -1,5 +1,5 @@
 class RatingQuestionsController < ApplicationController
-  before_action :find_question, only: [:show, :edit, :update, :destroy]
+  before_action :find_question, only: %i[show edit update destroy]
 
   def index
     @rating_questions = RatingQuestion.all
@@ -25,14 +25,13 @@ class RatingQuestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @rating_question.update(question_params)
       respond_to do |format|
         format.html { redirect_to @rating_question, notice: "Updated Successfully" }
-        format.json { render :show , status: :ok }
+        format.json { render :show, status: :ok }
       end
     else
       errors = @rating_question.errors.full_messages.to_sentence
@@ -51,8 +50,7 @@ class RatingQuestionsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
 
@@ -67,5 +65,4 @@ class RatingQuestionsController < ApplicationController
       return
     end
   end
-  
 end

@@ -1,12 +1,13 @@
 require "rails_helper"
 
 RSpec.describe "Shows a question" do
-
-  let(:question) { RatingQuestion.create(title: "Is Capybara Cool?") }
-  
   it "shows a question" do
-    visit rating_question_path(question)
-
+    visit "/"
+    click_link "Create New Question"
+    fill_in "title", with: "Is Capybara Cool?"
+    click_button "Add New Question"
+    visit "/"
+    click_link "Is Capybara Cool?"
     expect(page).to have_content("Is Capybara Cool?")
   end
 end

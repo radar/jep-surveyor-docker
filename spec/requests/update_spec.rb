@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe "Update" do
   describe "PUT /ratingQuestions/:id" do
-    
     context "when the question exists" do
       let(:question) do
         RatingQuestion.create!(title: "Hello World", tag: "greetings")
@@ -30,7 +29,7 @@ RSpec.describe "Update" do
       let(:question) do
         RatingQuestion.create!(title: "Hello World")
       end
-  
+
       it "returns a 200 OK and returns a question -- with an additional field" do
         patch "/rating_questions/#{question.id}.json", params: { rating_question: { tag: "greetings" } }
         response_json = JSON.parse(response.body)

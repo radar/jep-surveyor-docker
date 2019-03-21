@@ -13,9 +13,6 @@ import EditRatingQuestionForm from './EditRatingQuestionForm';
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 class App extends React.Component {
-  constructor(props){
-    super(props)
-  }
   render(): JSX.Element{
     return(
       <Provider store={createStoreWithMiddleware(reducers)}>
