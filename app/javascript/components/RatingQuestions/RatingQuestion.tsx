@@ -3,11 +3,10 @@ import * as styles from './RatingQuestion.module.scss'
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
 import axios from 'axios';
 
-interface RatingQuestionProps extends RouteComponentProps<any>, React.Props<any> {
+interface RatingQuestionProps extends RouteComponentProps<any>{
   id: string,
   title: string,
-  url: string,
-  children?: React.ReactNode
+  url: string
 }
 
 class RatingQuestion extends React.Component<RatingQuestionProps> {
