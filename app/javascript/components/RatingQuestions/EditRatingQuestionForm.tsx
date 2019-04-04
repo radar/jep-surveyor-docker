@@ -4,11 +4,12 @@ import axios from 'axios';
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { editQuestion, fetchQuestion } from '../../actions';
+import { Question } from './RatingQuestions';
 
 interface EditRatingQuestionFormProps extends RouteComponentProps<any>, React.Props<any> {
   editQuestion: (questionId: string, value: string) => void,
   fetchQuestion: (questionId: string) => void,
-  questions: any,
+  questions: Question[],
 }
 
 interface EditRatingQuestionFormState {
@@ -22,9 +23,9 @@ class EditRatingQuestionForm extends React.Component<EditRatingQuestionFormProps
         editMessage: '',
     }
 
-    singleQuestion = (questions: any, questionId: string) => {
-      let question = questions.filter(question => question.id === questionId)
-      return question[0]
+    singleQuestion = (questions: Question[], questionId: string) => {
+      let question = questions.find(question => question.id === questionId)
+      return question
     }
 
     componentDidMount = () => {
@@ -58,19 +59,19 @@ class EditRatingQuestionForm extends React.Component<EditRatingQuestionFormProps
             <div className={styles.editQuestionForm}>
                 <form onSubmit={this.handleSubmit}>
                     <h3>Title:</h3>
-                    <textarea className={[styles.field, styles.editField].join(' ')} onChange={this.handleChange} name="title" value={this.state.value}/><br/>
+                    <textarea className={`${styles.field} ${styles.editField}`} onChange={this.handleChange} name="title" value={this.state.value}/><br/>
                     {this.state.editMessage? <h3>{this.state.editMessage}</h3> : ''}
-                    <button className={[styles.button, styles.cancelButton].join(' ')}><Link to="/">Cancel</Link></button>
+                    <button className={`${styles.button} ${styles.cancelButton}`}><Link to="/">Cancel</Link></button>
                     { this.state.editMessage?
-                      <button className={[styles.button, styles.cancelButton].join(' ')}><Link to="/">Back</Link></button>
+                      <button className={`${styles.button} ${styles.cancelButton}`}><Link to="/">Back</Link></button>
                       :
-                      <button 
-                        className={styles.button} 
+                      <button
+                        className={styles.button}
                         type="submit" value="Submit">
                         Update Question
                       </button>
                     }
-                    
+
                 </form>
             </div>
         )
@@ -81,7 +82,7 @@ class EditRatingQuestionForm extends React.Component<EditRatingQuestionFormProps
             <div>
                 { this.renderForm() }
             </div>
-            
+
         )
     }
 }

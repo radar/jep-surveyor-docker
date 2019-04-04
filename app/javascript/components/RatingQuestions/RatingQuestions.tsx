@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { fetchQuestions } from "../../actions"
 import * as styles from './index.module.scss'
 import RatingQuestion from './RatingQuestion'
-interface Question {
+export interface Question {
   id: string,
   title: string,
   url: string
@@ -30,6 +30,8 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
       return this.props.questions.map(question => {
         return <RatingQuestion key={question.id} {...question} />
       })
+    } else {
+      return <div>There are no questions to display</div>
     }
   }
   render(): JSX.Element {

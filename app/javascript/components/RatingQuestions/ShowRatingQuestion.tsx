@@ -3,11 +3,12 @@ import * as styles from './RatingQuestion.module.scss'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchQuestion, deleteQuestion } from '../../actions';
+import { Question } from './RatingQuestions'
 import axios from 'axios';
 interface RatingQuestionProps extends RouteComponentProps<any>, React.Props<any> {
   fetchQuestion: (questionId: string) => void,
   deleteQuestion: (questionId: string) => void,
-  questions: any,
+  questions: Question[],
 }
 
 interface RatingQuestionStates {
@@ -25,9 +26,9 @@ class ShowRatingQuestion extends React.Component<RatingQuestionProps, RatingQues
     deleteMessage: ''
   }
 
-  singleQuestion = (questions: any, questionId: string) => {
-    let question = questions.filter(question => question.id === questionId)
-    return question[0]
+  singleQuestion = (questions: Question[], questionId: string) => {
+    let question = questions.find(question => question.id === questionId)
+    return question
   }
 
   componentDidMount = () => {

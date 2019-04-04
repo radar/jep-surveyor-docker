@@ -1,6 +1,7 @@
 import { FETCH_QUESTIONS, FETCH_QUESTION, SAVE_QUESTION, EDIT_QUESTION, DELETE_QUESTION, QuestionActionTypes } from '../actions/types';
+import { Question } from '../components/RatingQuestions/RatingQuestions'
 
-const updateEditedQuestion = (questions: any, newQuestion: any) => {
+const updateEditedQuestion = (questions: Question[], newQuestion: Question) => {
   questions.map( question => {
     if(question.id === newQuestion.id){
       question.title = newQuestion.title
@@ -8,7 +9,7 @@ const updateEditedQuestion = (questions: any, newQuestion: any) => {
   })
 }
 
-const updateDeleteddQuestion = (questions: any, questionId: string) => {
+const updateDeleteddQuestion = (questions: Question[], questionId: string) => {
   return questions.filter(question => question.id !== questionId)
 }
 
