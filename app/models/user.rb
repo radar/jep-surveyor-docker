@@ -13,4 +13,10 @@ class User
   validates :password, presence: true,
             length: { minimum: 8 }
 
+  def validate_password(password:)
+    return self if authenticate(password)
+
+    errors.add(:passowrd, 'Invalid')
+    self
+  end
 end

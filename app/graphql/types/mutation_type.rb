@@ -47,5 +47,25 @@ module Types
       Survey.create(name: name)
     end
 
+    field :signup_user, CreateUserResult, null: false do
+      argument :email, String, required: true
+      argument :password, String, required: true
+      argument :password_confirmation, String, required: true
+    end
+
+    def signup_user(email:, password:, password_confirmation:)
+      User.create(email: email, password: password, password_confirmation: password_confirmation)
+    end
+
+    field :login_user, LoginResult, null:false do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
+    def login_user(email:, password:)
+      user = User.find_by(email: email)
+      user.validate_password(password: password)
+    end
+
   end
 end
