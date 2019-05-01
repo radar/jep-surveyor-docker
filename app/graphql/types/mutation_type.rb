@@ -65,6 +65,10 @@ module Types
     def login_user(email:, password:)
       user = User.find_by(email: email)
       user.validate_password(password: password)
+      return user if user.errors.any?
+
+      authenticate = Users::Authenticate.new(email:email, id: user.id)
+      authenticate.generate_login_details
     end
 
   end

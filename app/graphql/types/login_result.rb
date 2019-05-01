@@ -1,9 +1,9 @@
 module Types
   class LoginResult < BaseUnion
-    possible_types UserType, ValidationError
+    possible_types SuccessfulLoginResult, ValidationError
 
     def self.resolve_type(object, _context)
-      object.errors.any? ? ValidationError : UserType
+      object.is_a?(Hash) ? SuccessfulLoginResult : ValidationError
     end
 
   end
