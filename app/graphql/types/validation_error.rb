@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class ValidationError < BaseObject
     field :errors, String, null: false

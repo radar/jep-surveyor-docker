@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class CreateUserResult < BaseUnion
     possible_types UserType, ValidationError
@@ -5,6 +7,5 @@ module Types
     def self.resolve_type(object, _context)
       object.persisted? ? UserType : ValidationError
     end
-
   end
 end

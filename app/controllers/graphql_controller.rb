@@ -1,32 +1,40 @@
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      current_user: current_user(token)
+      current_user: current_user(token),
+      current_account: current_account
     }
     result = SurveyorSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
-  rescue => e
+  rescue StandardError => e
     raise e unless Rails.env.development?
+
     handle_error_in_development e
   end
 
   private
+
+  def current_account
+    return unless current_user(token)
+
+    current_user(token).account
+  end
 
   def token
     request.headers['Authorization']
   end
 
   def current_user(token)
-    secret = 'my$ecretK3y'
     return unless token
 
-    token = token.split.last
-    return unless token
+    payload = Users::Authenticate.decode_payload(token)
+    return unless payload
 
-    payload = JWT.decode token, secret, true, algorithm: 'HS256'
     User.find(payload.first['id'])
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -38,7 +40,6 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
 
   # Highlight code that triggered database queries in logs.
-
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

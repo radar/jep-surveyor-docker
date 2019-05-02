@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Users
+  # add authentication class to encode and decode token
   class Authenticate
     def initialize(email:, id:)
       @email = email
@@ -28,5 +31,11 @@ module Users
       ENV['AUTH_SECRET']
     end
 
+    def self.decode_payload(token)
+      token = token.split.last
+      return unless token
+
+      JWT.decode token, ENV['AUTH_SECRET'], true, algorithm: 'HS256'
+    end
   end
 end

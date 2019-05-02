@@ -1,15 +1,17 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "Creating questions" do
-  it "creates a new question" do
-    visit "/"
-    fill_in "Title", with: "Is Capybara Cool?"
-    click_button "Add"
+require 'rails_helper'
 
-    within("[data-automation-id=questions]") do
-      expect(page).to have_content("Is Capybara Cool?")
+RSpec.describe 'Creating questions' do
+  it 'creates a new question' do
+    visit '/'
+    fill_in 'Title', with: 'Is Capybara Cool?'
+    click_button 'Add'
+
+    within('[data-automation-id=questions]') do
+      expect(page).to have_content('Is Capybara Cool?')
     end
   end
 
-  it "cannot create a new question without a title"
+  it 'cannot create a new question without a title'
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RatingQuestionProps
   attr_reader :rating_questions
 

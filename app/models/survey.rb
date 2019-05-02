@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Survey
   include Mongoid::Document
   has_many :rating_questions, dependent: :delete_all
