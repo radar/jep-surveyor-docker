@@ -36,8 +36,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'webpacker', '~> 4.0'
 gem 'react-rails'
 gem 'graphql'
-gem "graphiql-rails"
+gem 'graphiql-rails'
 gem 'jwt'
+gem 'figaro'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -67,7 +67,7 @@ module Types
       user.validate_password(password: password)
       return user if user.errors.any?
 
-      authenticate = Users::Authenticate.new(email:email, id: user.id)
+      authenticate = Users::Authenticate.new(email:user.email, id: user.id)
       authenticate.generate_login_details
     end
 

@@ -25,7 +25,7 @@ module Users
     end
 
     def secret
-      'my$ecretK3y'
+      ENV['AUTH_SECRET']
     end
 
   end

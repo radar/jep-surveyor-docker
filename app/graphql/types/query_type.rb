@@ -24,5 +24,11 @@ module Types
     def survey(survey_id:)
       Survey.find(survey_id)
     end
+
+    field :user, UserType, null: false
+
+    def user
+      context[:current_user]
+    end
   end
 end
