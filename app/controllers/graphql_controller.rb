@@ -34,7 +34,6 @@ class GraphqlController < ApplicationController
 
     payload = Users::Authenticate.decode_payload(token)
     return unless payload
-
     User.find(payload.first['id'])
   end
 

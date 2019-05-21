@@ -25,4 +25,11 @@ class User
     errors.add(:password, 'Invalid')
     self
   end
+
+  def payload
+    {
+      "email": self.email,
+      "id": self.id.to_s
+    }
+  end
 end

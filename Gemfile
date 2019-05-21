@@ -35,7 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'figaro'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'graphiql-rails'
 gem 'graphql'
 gem 'jwt'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  class QueryType < Types::BaseObject
+  class QueryType < ::GraphQL::Schema::Object
     field :rating_questions, [QuestionType], null: false
     field :rating_question, QuestionType, null: false do
       argument :id, ID, required: true
@@ -30,5 +30,6 @@ module Types
     def user
       context[:current_user]
     end
+    # field :user, query: Queries::User
   end
 end

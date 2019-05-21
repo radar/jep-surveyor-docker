@@ -17,42 +17,34 @@ User.create(
   account_id: coles.id
 )
 
-culture_amp_survey = Survey.create(
-  name: 'CA Engagement Survey',
-  account_id: culture_amp.id
+culture_amp_survey = culture_amp.surveys.create(
+  name: 'CA Engagement Survey'
 )
 
-coles_survey = Survey.create(
-  name: 'Coles Engagement Survey',
-  account_id: coles.id
+coles_survey = coles.surveys.create(
+  name: 'Coles Engagement Survey'
 )
 
-RatingQuestion.create(
-  title: 'ca rating question 1',
-  survey_id: culture_amp_survey.id
+culture_amp_survey.rating_questions.create(
+  title: 'ca rating question 1'
 )
 
-RatingQuestion.create(
-  title: 'ca rating question 2',
-  survey_id: culture_amp_survey.id
+culture_amp_survey.rating_questions.create(
+  title: 'ca rating question 2'
 )
 
-RatingQuestion.create(
-  title: 'ca rating question 3',
-  survey_id: culture_amp_survey.id
+culture_amp_survey.rating_questions.create(
+  title: 'ca rating question 3'
 )
 
-RatingQuestion.create(
-  title: 'coles rating question 1',
-  survey_id: coles_survey.id
+coles_survey.rating_questions.create(
+  title: 'coles rating question 1'
 )
 
-RatingQuestion.create(
-  title: 'coles rating question 2',
-  survey_id: coles_survey.id
+coles_survey.rating_questions.create(
+  title: 'coles rating question 2'
 )
 
-RatingQuestion.create(
-  title: 'coles rating question 3',
-  survey_id: coles_survey.id
+coles_survey.rating_questions.create(
+  title: 'coles rating question 3'
 )

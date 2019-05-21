@@ -3,32 +3,12 @@
 module Users
   # add authentication class to encode and decode token
   class Authenticate
-    def initialize(email:, id:)
-      @email = email
-      @id = id
-    end
-
-    def generate_login_details
-      {
-        "email": @email,
-        "id": @id,
-        "token": token
-      }
+    def initialize(payload:)
+      @payload = payload
     end
 
     def token
-      JWT.encode payload, secret, 'HS256'
-    end
-
-    def payload
-      {
-        "email": @email,
-        "id": @id.to_s
-      }
-    end
-
-    def secret
-      ENV['AUTH_SECRET']
+      JWT.encode @payload, ENV['AUTH_SECRET'], 'HS256'
     end
 
     def self.decode_payload(token)
