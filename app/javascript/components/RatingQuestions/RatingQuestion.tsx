@@ -18,10 +18,18 @@ interface RatingQuestionState {
 class RatingQuestion extends React.Component<RatingQuestionProps, RatingQuestionState> {
 
   state = {
-    selectedOption: "Nothing selected"
+    selectedOption: ''
   }
 
   questionOption = (option: string) => {
+    let previous_response = this.state.selectedOption
+    let question_id = this.props.id
+    let current_response = option
+    axios.post('/capture_response', {
+      previous_response: previous_response,
+      question_id: question_id,
+      current_response: current_response,
+    })
     this.setState({ selectedOption: option })
   }
 
@@ -33,7 +41,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps, RatingQuestion
   render(): JSX.Element {
     return (
       <div className={styles.ratingQuestion}>
-        <Link to={`/rating_questions/${this.props.id}`}>{this.props.title}</Link>
+        <Link to={`/rating_questions/${this.props.id}`}><h2>{this.props.title}</h2></Link>
         {this.renderRatingOptions(this.props.title)}
       </div>
     )
