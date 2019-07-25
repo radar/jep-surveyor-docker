@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RatingQuestionsHelper
   def rating_questions_props
     {
@@ -10,6 +12,7 @@ module RatingQuestionsHelper
       end
     }
   end
+
   def rating_question_props
     if @rating_question.persisted?
       {
@@ -26,6 +29,5 @@ module RatingQuestionsHelper
         post_url: rating_questions_url
       }
     end
-    
   end
 end

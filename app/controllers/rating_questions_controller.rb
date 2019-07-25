@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RatingQuestionsController < ApplicationController
-  before_action :find_question, only: [:show, :edit, :update, :destroy]
+  before_action :find_question, only: %i[show edit update destroy]
 
   def index
     @rating_questions = RatingQuestion.all
@@ -13,7 +15,7 @@ class RatingQuestionsController < ApplicationController
     @rating_question = RatingQuestion.new(question_params)
     if @rating_question.save
       respond_to do |format|
-        format.html { redirect_to @rating_question, notice: "Your question has been created." }
+        format.html { redirect_to @rating_question, notice: 'Your question has been created.' }
         format.json { render :show, status: :created }
       end
     else
@@ -25,14 +27,13 @@ class RatingQuestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @rating_question.update(question_params)
       respond_to do |format|
-        format.html { redirect_to @rating_question, notice: "Updated Successfully" }
-        format.json { render :show , status: :ok }
+        format.html { redirect_to @rating_question, notice: 'Updated Successfully' }
+        format.json { render :show, status: :ok }
       end
     else
       errors = @rating_question.errors.full_messages.to_sentence
@@ -45,14 +46,13 @@ class RatingQuestionsController < ApplicationController
   def destroy
     if @rating_question.destroy
       respond_to do |format|
-        format.html { redirect_to "/", notice: "Deleted Successfully" }
+        format.html { redirect_to '/', notice: 'Deleted Successfully' }
         format.json { render json: {}, status: :no_content }
       end
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
 
@@ -67,5 +67,4 @@ class RatingQuestionsController < ApplicationController
       return
     end
   end
-  
 end

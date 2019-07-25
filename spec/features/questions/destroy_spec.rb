@@ -1,15 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "Delete questions" do
-  
-  it "delete a question" do
-    question = RatingQuestion.create(title: "Is Capybara Cool?")
-    visit "/"
-    click_link "Is Capybara Cool?"
-    click_link "Delete"
+require 'rails_helper'
 
-    within("[data-automation-id=questions-list]") do
-      expect(page).not_to have_content("Is Capybara Cool?")
+RSpec.describe 'Delete questions' do
+  it 'delete a question' do
+    question = RatingQuestion.create(title: 'Is Capybara Cool?')
+    visit '/'
+    click_link 'Is Capybara Cool?'
+    click_link 'Delete'
+
+    within('[data-automation-id=questions-list]') do
+      expect(page).not_to have_content('Is Capybara Cool?')
     end
   end
 end

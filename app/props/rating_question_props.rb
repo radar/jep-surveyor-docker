@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RatingQuestionProps
   attr_reader :rating_question, :rating_questions_url
 
@@ -10,7 +12,7 @@ class RatingQuestionProps
     {
       id: @rating_question.id.to_s,
       title: @rating_question.title,
-      url: "#{rating_questions_url}/#{@rating_question.id.to_s}"
+      url: "#{rating_questions_url}/#{@rating_question.id}"
     }
   end
 end

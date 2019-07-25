@@ -1,5 +1,6 @@
-require 'net/http'
-require 'uri'
+# frozen_string_literal: true
+
+require 'http'
 
 class CaptureResponse
   attr_reader :question_id, :previous_response, :current_response
@@ -14,14 +15,10 @@ class CaptureResponse
   end
 
   def capture_response
-    uri = URI 'https://postb.in/1564023697746-2610029494389'
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true if uri.scheme == 'https'
-
-    http.post(uri,{
-      "question_id"=> question_id,
-      "previous_response"=> previous_response,
-      "current_response"=> current_response,
-    }.to_json, 'content-Type' => 'application/json')
+    HTTP.post('https://postb.in/1564029451736-8012116455938', json: {
+                question_id: question_id,
+                previous_response: previous_response,
+                current_response: current_response
+              })
   end
 end

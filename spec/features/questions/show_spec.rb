@@ -1,12 +1,13 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "Shows a question" do
+require 'rails_helper'
 
-  let(:question) { RatingQuestion.create(title: "Is Capybara Cool?") }
-  
-  it "shows a question" do
+RSpec.describe 'Shows a question' do
+  let(:question) { RatingQuestion.create(title: 'Is Capybara Cool?') }
+
+  it 'shows a question' do
     visit rating_question_path(question)
 
-    expect(page).to have_content("Is Capybara Cool?")
+    expect(page).to have_content('Is Capybara Cool?')
   end
 end
