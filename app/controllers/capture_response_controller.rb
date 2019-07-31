@@ -3,9 +3,10 @@
 class CaptureResponseController < ApplicationController
   def create
     CaptureResponse.for(
+      survey_id: params[:survey_id],
       question_id: params[:question_id],
-      previous_response: params[:previous_response],
-      current_response: params[:current_response]
+      response_id: params[:response_id],
+      value: params[:value]
     )
   end
 end

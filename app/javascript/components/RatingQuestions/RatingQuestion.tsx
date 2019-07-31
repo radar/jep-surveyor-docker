@@ -5,6 +5,8 @@ import RatingOption from './RatingOption'
 import axios from 'axios';
 
 interface RatingQuestionProps extends RouteComponentProps<any>, React.Props<any> {
+  survey_id: string,
+  response_id: string,
   id: string,
   title: string,
   url: string,
@@ -22,18 +24,26 @@ class RatingQuestion extends React.Component<RatingQuestionProps, RatingQuestion
   }
 
   questionOptionSelected = (option: string) => {
-    axios.post('/capture_response', {
-      previous_response: this.state.selectedOption,
-      question_id: this.props.id,
-      current_response: option,
-    })
+    const { survey_id, response_id, id } = this.props
     this.setState({ selectedOption: option })
+    axios.post('/capture_response', {
+      survey_id: survey_id,
+      response_id: response_id,
+      value: option,
+      question_id: id
+    })
   }
 
   renderRatingOptions = (name: string) => {
-    let values = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
+    let values = [
+      { label: "Strongly Disagree", value: "1" },
+      { label: "Disagree", value: "2"},
+      { label: "Neutral", value: "3" },
+      { label: "Agree", value: "4" },
+      { label: "Strongly Agree", value: "5"},
+    ]
 
-    return values.map((value, i) => <RatingOption key={i} name={name} value={value} questionOptionSelected={this.questionOptionSelected} />)
+    return values.map((value, i) => <RatingOption key={i} name={name} label={value.label} value={value.value} questionOptionSelected={this.questionOptionSelected} />)
   }
   render(): JSX.Element {
     const {id, title} = this.props

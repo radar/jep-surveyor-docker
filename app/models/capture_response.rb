@@ -3,22 +3,24 @@
 require 'http'
 
 class CaptureResponse
-  attr_reader :question_id, :previous_response, :current_response
-  def initialize(question_id, previous_response, current_response)
+  attr_reader :survey_id, :question_id, :response_id, :value
+  def initialize(survey_id, question_id, response_id, value)
+    @survey_id = survey_id
     @question_id = question_id
-    @previous_response = previous_response
-    @current_response = current_response
+    @response_id = response_id
+    @value = value
   end
 
-  def self.for(question_id:, previous_response:, current_response:)
-    new(question_id, previous_response, current_response).capture_response
+  def self.for(survey_id:, question_id:, response_id:, value:)
+    new(survey_id, question_id, response_id, value).capture_response
   end
 
   def capture_response
-    HTTP.post('https://postb.in/1564029451736-8012116455938', json: {
-                question_id: question_id,
-                previous_response: previous_response,
-                current_response: current_response
-              })
+    HTTP.post('https://postb.in/1564554521717-6377238479908', json: {
+      survey_id: survey_id,
+      question_id: question_id,
+      response_id: response_id,
+      value: value
+    })
   end
 end
