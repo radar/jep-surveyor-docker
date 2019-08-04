@@ -16,11 +16,11 @@ class CaptureResponse
   end
 
   def capture_response
-    HTTP.post('https://postb.in/1564554521717-6377238479908', json: {
-      survey_id: survey_id,
-      question_id: question_id,
-      response_id: response_id,
-      value: value
-    })
+    HTTP.post('http://localhost:8080/responses', json: {
+                survey_id: survey_id,
+                question_id: question_id,
+                response_id: response_id,
+                value: value
+              })
   end
 end
