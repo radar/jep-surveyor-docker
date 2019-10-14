@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -e
+
+./.buildkite/pipeline_template.sh | buildkite-agent pipeline upload
